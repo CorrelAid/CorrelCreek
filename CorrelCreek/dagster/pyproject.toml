@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "creek-control"
+version = "0.0.1"
+description = ""
+authors = ["CorrelAid"]
+readme = "README.md"
+packages = [
+    { include = "creek_control" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+dagster = "^1.5.2"
+dagster-meltano = "^1.5.2"
+dagit = "^1.5.2"
+urllib3 = "<2"
+
+[build-system]
+requires = ["poetry-core>=1.0.8"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.dagster]
+module_name = "creek_control"
