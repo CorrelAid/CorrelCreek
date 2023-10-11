@@ -2,24 +2,26 @@
 
 ## Dev Setup
 
-1. Set environment variables for your shell session and spin up Postgres  with Docker:
+1. Create a file called secret.env with the following contents
+
+```
+TAP_GITHUB_AUTH_TOKEN='gh_token'
+
+```
+
+2. Run the setup script to create .env files and spin up Postgres with Docker:
 
 ```
 bash dev_setup.sh
 ```
 
-2. Navigate to the dagster folder and install requirements for the dagster project with poetry:
+3. Navigate to the Dagster folder and install requirements for the Dagster project with poetry:
 
 ```
 poetry install
 ```
 
-3. Install meltano
+4. Install meltano
 
 
 
-4. Create a GitHub Token, navigate to the meltano folder and create a .env file with the following contents:
-
-```
-TAP_GITHUB_AUTH_TOKEN='gh_token'
-```
