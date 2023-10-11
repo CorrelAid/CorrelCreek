@@ -8,20 +8,20 @@ environments:
       loaders:
       - name: target-postgres
         config:
-          host: localhost
-          port: 5432
-          database: postgres
-          user: meltano
-          password: meltano
+          host: $POSTGRES_HOST
+          port: $POSTGRES_PORT
+          database: $POSTGRES_DB
+          user: $POSTGRES_USER
+          password: $POSTGRES_PASSWORD
       utilities:
       - name: dbt-postgres
         config:
-          host: localhost
-          port: 5432
-          database: postgres  
-          user: meltano
-          password: meltano
-          schema: analytics
+          host: $POSTGRES_HOST
+          port: $POSTGRES_PORT
+          database: $POSTGRES_DB
+          user: $POSTGRES_USER
+          password: $POSTGRES_PASSWORD
+          schema: $POSTGRES_SCHEMA
 - name: staging
 - name: prod
 plugins:

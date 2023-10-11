@@ -5,7 +5,5 @@ services:
     image: postgres:14-alpine
     ports:
       - 5432:5432
-    environment:
-      - POSTGRES_PASSWORD=meltano
-      - POSTGRES_USER=meltano
-      - POSTGRES_DB=postgres
+    env_file:
+      - .env
