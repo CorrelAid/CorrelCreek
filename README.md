@@ -1,3 +1,12 @@
 # CorrelCreek
 
-Data Ingestion System for Open Data related to CorrelAid
+Data Ingestion and Transformation Pipeline for Open Data related to CorrelAid
+
+WIP
+
+## Project Explanation and Structure
+
+- `CorrelCreek` contains the code that configures the data pipeline. It consists of Meltano and dbt jobs that are orchestrated with dagster. 
+- `IaC` contains code to deploy the pipeline. For that Ansible and Terraform is utilized.
+
+These folders contain their own README with instructions and more detailed explanations. 

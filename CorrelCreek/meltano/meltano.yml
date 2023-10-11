@@ -1,0 +1,48 @@
+version: 1
+default_environment: dev
+project_id: 146fd926-a33b-43f8-8da5-683d23512053
+environments:
+- name: dev
+  config:
+    plugins:
+      loaders:
+      - name: target-postgres
+        config:
+          host: localhost
+          port: 5432
+          database: postgres
+          user: meltano
+          password: meltano
+      utilities:
+      - name: dbt-postgres
+        config:
+          host: localhost
+          port: 5432
+          database: postgres  
+          user: meltano
+          password: meltano
+          schema: analytics
+- name: staging
+- name: prod
+plugins:
+  extractors:
+  - name: tap-github
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/tap-github.git
+    config:
+      organizations:
+      - CorrelAid
+    select:
+    - commits.*
+    - repositories.*
+    - stargazers.*
+  loaders:
+  - name: target-postgres
+    variant: meltanolabs
+    pip_url: meltanolabs-target-postgres~=0.0.7
+    config:
+      add_record_metadata: true
+  utilities:
+  - name: dbt-postgres
+    variant: dbt-labs
+    pip_url: dbt-core~=1.5.2 dbt-postgres~=1.5.2 git+https://github.com/meltano/dbt-ext.git@main
