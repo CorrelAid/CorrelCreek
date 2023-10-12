@@ -1,9 +1,12 @@
 
 from dagster import job
-from creek_control.ops import get_data
+from dagster_meltano import meltano_run_op
+from creek_control.ops import extract_postgres, gen_csv, upload_to_gh
+
 
 @job
 def pipeline():
-   data = get_data()
-   print(data)
+   tap_gh_done = meltano_run_op("tap-github target-postgres")()
+   transform_done = meltano_run_op("dbt-postgres:run")(after=tap_gh_done)
+   upload_to_gh(gen_csv(extract_postgres(transform_done)))
 

@@ -25,11 +25,11 @@ class PostgresQuery(ConfigurableResource):
             # yield, allowing execution to occur
             yield self
 
-    def get_all(self, table: str) -> List[str]:
+    def get_all(self, table: str) -> List[List[str]]:
         query = select("*").select_from(text("analytics.daily_stats"))
         with self.yield_for_execution(context=None) as pg_query:
             rows = pg_query._db_connection.execute(query)
-            data = [row for row in rows]
+            data = [[str(value) for value in row] for row in rows]
         return data
 
 class GithubClient(ConfigurableResource):

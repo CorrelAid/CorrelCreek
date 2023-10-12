@@ -1,27 +1,19 @@
-from dagster import op, Out, Output, In
-from dagster_meltano import meltano_run_op
+from dagster import op, Out, Output, In, Nothing
 from typing import List
 from io import StringIO
 import csv
 from creek_control.resources import PostgresQuery, GithubClient
 
-@op()
-def tap_github():
-    tap_done = meltano_run_op("tap-github target-postgres")
 
-@op()
-def transform():
-    tap_done = meltano_run_op("dbt-postgres:run")
-
-
-@op(out={"list": Out(list)})
-def get_data(postgres_query: PostgresQuery):
+@op(ins={"start": In(Nothing)},out={"list": Out(list)})
+def extract_postgres(postgres_query: PostgresQuery):
     yield Output(postgres_query.get_all("daily_stats"), "list")
 
-@op(out={"csv": Out(StringIO)})
+@op(out={"csv": Out(str)})
 def gen_csv(data: List[List[str]]):
     csv_data = StringIO()
     csv.writer(csv_data).writerows(data)
+    csv_data = csv_data.getvalue()
     yield Output(csv_data, "csv")
 
 @op()
