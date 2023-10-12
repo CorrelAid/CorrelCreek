@@ -5,7 +5,8 @@
 1. Create a file called secret.env with the following contents
 
 ```
-TAP_GITHUB_AUTH_TOKEN='gh_token'
+GITHUB_AUTH_TOKEN='gh_token'
+GITHUB_OPEN_DATA_ACCESS_TOKEN='token'
 
 ```
 

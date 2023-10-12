@@ -12,7 +12,12 @@ for env_file in "${env_files[@]}"; do
   echo "POSTGRES_USER=dagster" >> "$env_file"
   if [[ "$env_file" == "meltano/.env" ]]; then
     source "$secret_env_file"
-    echo "TAP_GITHUB_AUTH_TOKEN=$TAP_GITHUB_AUTH_TOKEN" >> "$env_file"
+    echo "TAP_GITHUB_AUTH_TOKEN=$GITHUB_AUTH_TOKEN" >> "$env_file"
+  fi
+  if [[ "$env_file" == "dagster/.env" ]]; then
+    source "$secret_env_file"
+    echo "GITHUB_ACCESS_TOKEN=$GITHUB_OPEN_DATA_ACCESS_TOKEN" >> "$env_file"
+    echo "GITHUB_REPO_NAME=CorrelAid/open-data-test" >> "$env_file"
   fi
 done
 
