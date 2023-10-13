@@ -20,12 +20,14 @@ bash dev_setup.sh
 
 ```
 poetry install
+poetry run pre-commit install
 ```
 
 4. Navigate to the meltano folder and install requirements:
 ```
 poetry install
 poetry run meltano install
+poetry run pre-commit install
 ```
 
 ### Quality Insurance
