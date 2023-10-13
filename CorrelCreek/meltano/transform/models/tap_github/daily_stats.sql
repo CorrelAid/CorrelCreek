@@ -36,7 +36,7 @@ joined_counts AS (
     SELECT
         COALESCE(
             commit_counts.commit_date, stargazer_counts.starred_date
-        ) AS "date",
+        ) AS "day",
         COALESCE(commit_counts.commit_count, 0) AS commit_count,
         COALESCE(commit_counts.active_users_count, 0) AS active_users_count,
         COALESCE(stargazer_counts.stargazers_count, 0) AS stargazers_count
