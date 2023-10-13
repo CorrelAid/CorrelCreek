@@ -6,13 +6,14 @@ from sqlalchemy.engine import Connectable
 from pydantic import PrivateAttr
 from github import Github, Auth
 
+
 class PostgresQuery(ConfigurableResource):
     db: str
     user: str
     pw: str
     port: str
     host: str
-    schema_name:str
+    schema_name: str
     _db_connection: Connectable = PrivateAttr()
 
     @contextmanager
@@ -32,8 +33,9 @@ class PostgresQuery(ConfigurableResource):
             data = [[str(value) for value in row] for row in rows]
         return data
 
+
 class GithubClient(ConfigurableResource):
-    access_token: str 
+    access_token: str
     repo_name: str
 
     def upload_content_to_repo(self, file_name, content):
@@ -43,7 +45,7 @@ class GithubClient(ConfigurableResource):
         try:
             # Try to get the contents of the file
             file_contents = repo.get_contents(file_name)
-            
+
             # If the file exists, update it
             repo.update_file(
                 file_contents.path,
@@ -55,4 +57,3 @@ class GithubClient(ConfigurableResource):
         except github.UnknownObjectException:
             # If the file doesn't exist, create it
             repo.create_file(file_name, "Create file", content, branch="main")
-

@@ -8,20 +8,20 @@ environments:
       loaders:
       - name: target-postgres
         config:
-          host: $POSTGRES_HOST
-          port: $POSTGRES_PORT
-          database: $POSTGRES_DB
-          user: $POSTGRES_USER
-          password: $POSTGRES_PASSWORD
+          host: $DBT_POSTGRES_HOST
+          port: $DBT_POSTGRES_PORT
+          database: $DBT_POSTGRES_DBNAME
+          user: $DBT_POSTGRES_USER
+          password: $DBT_POSTGRES_PASSWORD
       utilities:
       - name: dbt-postgres
         config:
-          host: $POSTGRES_HOST
-          port: $POSTGRES_PORT
-          database: $POSTGRES_DB
-          user: $POSTGRES_USER
-          password: $POSTGRES_PASSWORD
-          schema: $POSTGRES_SCHEMA
+          host: $DBT_POSTGRES_HOST
+          port: $DBT_POSTGRES_PORT
+          database: $DBT_POSTGRES_DBNAME
+          user: $DBT_POSTGRES_USER
+          password: $DBT_POSTGRES_PASSWORD
+          schema: $DBT_POSTGRES_SCHEMA
 - name: staging
 - name: prod
 plugins:
@@ -46,3 +46,6 @@ plugins:
   - name: dbt-postgres
     variant: dbt-labs
     pip_url: dbt-core~=1.5.2 dbt-postgres~=1.5.2 git+https://github.com/meltano/dbt-ext.git@main
+  - name: sqlfluff
+    variant: sqlfluff
+    pip_url: sqlfluff sqlfluff-templater-dbt dbt-core dbt-postgres

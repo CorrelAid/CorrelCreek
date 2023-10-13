@@ -22,7 +22,19 @@ bash dev_setup.sh
 poetry install
 ```
 
-4. Install meltano
+4. Navigate to the meltano folder and install requirements:
+```
+poetry install
+poetry run meltano install
+```
 
-
+### Quality Insurance
+### Meltano
+Sqlfluff is used for sql linitin. Lint the sql files by running:
+```
+poetry run meltano invoke sqlfluff:lint
+``` 
+There is a VS Code extension for sqlfluff
+## Dagster
+Black is used for formatting, Ruff is used for linting.
 
