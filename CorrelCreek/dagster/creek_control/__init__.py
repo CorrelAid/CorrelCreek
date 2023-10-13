@@ -15,6 +15,9 @@ defs = Definitions(
             port=EnvVar("POSTGRES_PORT"),
             schema_name=EnvVar("POSTGRES_SCHEMA"),
         ),
-        "github_client": GithubClient(access_token=EnvVar("GITHUB_ACCESS_TOKEN"), repo_name=EnvVar("GITHUB_REPO_NAME")),
+        "github_client": GithubClient(
+            access_token=EnvVar("GITHUB_ACCESS_TOKEN"),
+            repo_name=EnvVar("GITHUB_REPO_NAME"),
+        ),
     },
 )

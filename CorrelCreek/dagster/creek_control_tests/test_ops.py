@@ -26,7 +26,11 @@ def test_get_all():
 
 
 def test_gen_csv():
-    input_list = [["Header 1", "Header 2"], ["Value 1", "Value 2"], ["Value 3", "Value 4"]]
+    input_list = [
+        ["Header 1", "Header 2"],
+        ["Value 1", "Value 2"],
+        ["Value 3", "Value 4"],
+    ]
     csv_output = list(gen_csv(input_list))
 
     csv_data = csv_output[0]._value  # Get the value of the output
